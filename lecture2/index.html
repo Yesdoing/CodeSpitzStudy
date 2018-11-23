@@ -1,14 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
-</head>
-<body>
-    
+  </head>
+  <body>
+    <img id="a" />
+    <section id="b"></section>
+
+    <!-- 정의 시점 -->
+    <script src="Github.js"></script>
+    <script src="ImageLoader.js"></script>
+    <script src="MdLoader.js"></script>
+
+    <!-- 실행 시점 -->
     <script>
+      const s75img = new ImageLoader(
+        "hikaMaeng",
+        "codespitz75",
+        document.querySelector("#a")
+      );
+      s75img.load("einBig.png");
+
+      const s75md = new MdLoader(
+        "hikaMaeng",
+        "codespitz75",
+        document.querySelector("#b")
+      );
+      s75md.load("README.md");
     </script>
-</body>
+    
+  </body>
 </html>

@@ -14,6 +14,7 @@
     <script src="Github.js"></script>
     <script src="ImageLoader.js"></script>
     <script src="MdLoader.js"></script>
+    <script src="Loader.js"></script>
 
     <!-- 실행 시점 -->
     <script>
@@ -47,17 +48,15 @@
           .join("<br>");
       };
 
-      const loader = new Github("hikaMaeng", "codespitz75");
+      const img = (v, el) => el.src = "data:text/plain;base64," + v;
+      const md = (v, el) => el.innerHTML = parseMD(v);
 
-      const img = v => (el("#a").src = "data:text/plain;base64," + v);
-      loader.parser = img;
-      loader.load("einBig.png");
-      debugger;
+      const loader = new Loader('hikaMaeng', 'codespitz75');
+      loader.add('jpg,png,gif', img, el('#a'));
+      loader.add('md', md, el('#b'));
 
-      const md = v => (el("#b").innerHTML = parseMD(v));
-      loader.parser = md;
-      loader.load("README.md");
-      debugger;
-    </script>
+      loader.load('einBig.png');
+      loader.load('README.md');
+</script>
   </body>
 </html>

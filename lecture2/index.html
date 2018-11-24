@@ -17,20 +17,47 @@
 
     <!-- 실행 시점 -->
     <script>
-      const s75img = new ImageLoader(
-        "hikaMaeng",
-        "codespitz75",
-        document.querySelector("#a")
-      );
-      s75img.load("einBig.png");
+      //   const s75img = new ImageLoader(
+      //     "hikaMaeng",
+      //     "codespitz75",
+      //     document.querySelector("#a")
+      //   );
+      //   s75img.load("einBig.png");
 
-      const s75md = new MdLoader(
-        "hikaMaeng",
-        "codespitz75",
-        document.querySelector("#b")
-      );
-      s75md.load("README.md");
+      //   const s75md = new MdLoader(
+      //     "hikaMaeng",
+      //     "codespitz75",
+      //     document.querySelector("#b")
+      //   );
+      //   s75md.load("README.md");
+
+      const el = v => document.querySelector(v);
+
+      const parseMD = v => {
+        return d64(v)
+          .split("\n")
+          .map(v => {
+            let i = 3;
+            while (i--) {
+              if (v.startsWith("#".repeat(i + 1)))
+                return `<h${i + 1}>${v.substr(i + 1)}</h${i + 1}>`;
+            }
+            return v;
+          })
+          .join("<br>");
+      };
+
+      const loader = new Github("hikaMaeng", "codespitz75");
+
+      const img = v => (el("#a").src = "data:text/plain;base64," + v);
+      loader.parser = img;
+      loader.load("einBig.png");
+      debugger;
+
+      const md = v => (el("#b").innerHTML = parseMD(v));
+      loader.parser = md;
+      loader.load("README.md");
+      debugger;
     </script>
-    
   </body>
 </html>

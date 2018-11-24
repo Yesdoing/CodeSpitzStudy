@@ -7,3 +7,5 @@ const ImageLoader = class extends Github {
         this._target.src = 'data:text/plain;base64,' + v;
     }
 }
+
+//const img = (v, el) => el.src = 'data:text/plain;base64,' + v;

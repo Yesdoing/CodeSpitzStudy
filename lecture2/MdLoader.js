@@ -18,7 +18,6 @@ const MdLoader = class extends Github {
 };
 
 
-const d64 = (v) => decodeURIComponent(escape(
+const d64 = (v) => decodeURIComponent(
     atob(v).split('').map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join('')
-)
 );

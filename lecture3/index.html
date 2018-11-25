@@ -88,6 +88,15 @@
           list.forEach(({ task, list }) => {
             const li = parent.appendChild(el("li"));
             li.appendChild(el("div", { innerHTML: task._title }));
+            li.addEventListener('click', e => {
+                e.stopPropagation();
+                task.toggle();
+                if(task.isComplete()) {
+                    li.firstChild.className = 'done';
+                } else {
+                    li.firstChild.className = '';
+                }
+            });
             if(!list || !list.length) return;
             li.appendChild(this._render(el("ul"), list));
           });
